@@ -1,3 +1,25 @@
+#config/deploy/production.rb
+#Set user và và server_name của bạn
+set :user, 'chinh'
+set :server_name, '1.2.3.4'
+#Set branch trên Git mà bạn muốn deploy
+set :branch, 'master'
+#Set môi trường, ở đây mình thiết lâp cho môi trường production
+set :rails_env, 'production'
+set :bundle_flags, "--no-deployment"
+
+role :app, ["#{fetch(deploy_user)}@#{fetch(server_name)}"]
+role :web, ["#{fetch(deploy_user)}@#{fetch(server_name)}"]
+role :db,  ["#{fetch(deploy_user)}@#{fetch(server_name)}"]
+
+server fetch(server_name), user: fetch(deploy_user), roles: %w{web app db}, primary: true
+
+set :ssh_options, {
+  keys: %w(/.ssh/id_rsa),
+  forward_agent: false,
+ }
+
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
