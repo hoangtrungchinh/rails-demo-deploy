@@ -4,6 +4,8 @@ lock "~> 3.11.0"
 set :application, "DemoDeploy"
 set :repo_url, "git@github.com:hoangtrungchinh/rails-demo-deploy.git"
 set :scm, :git
+set :deploy_to, '/home/chinh/DemoDeploy'
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
